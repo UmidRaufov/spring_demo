@@ -25,19 +25,19 @@ public class StudentResource {
     }
 
     @GetMapping("/students/{id}")
-    public ResponseEntity getOne(@PathVariable Long id){
+    public ResponseEntity getOne(@PathVariable Long id) {
         Student student = new Student(id, "Saud", "Saidov", "5-cource");
         return ResponseEntity.ok(student);
     }
 
     @PostMapping("/students")
-    public ResponseEntity create(@RequestBody Student student){
+    public ResponseEntity create(@RequestBody Student student) {
         return ResponseEntity.ok(student);
     }
 
     @PutMapping("/students/{id}")
     public ResponseEntity update(@PathVariable Long id,
-                                 @RequestBody Student studentNew){
+                                 @RequestBody Student studentNew) {
         Student student = new Student(1L, "Ahror", "Zoirov", "1-kurs");
         student.setName(studentNew.getName());
         student.setLastName(studentNew.getLastName());
@@ -49,13 +49,13 @@ public class StudentResource {
     public ResponseEntity getOne(@RequestParam Long id,
                                  @RequestParam String name,
                                  @RequestParam String lastName,
-                                 @RequestParam String course){
+                                 @RequestParam String course) {
         Student student = new Student(id, name, lastName, course);
         return ResponseEntity.ok(student);
     }
 
-    @DeleteMapping("/students/{id}")
-    public ResponseEntity delete(@PathVariable Long id){
+    @DeleteMapping("/students/{id} ")
+    public ResponseEntity delete(@PathVariable Long id) {
         return ResponseEntity.ok("Data deleted");
     }
 }
