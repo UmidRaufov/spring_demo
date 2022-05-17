@@ -3,24 +3,29 @@ package com.dev24.spring_demo.web.rest;
 import com.dev24.spring_demo.domain.Employee;
 import com.dev24.spring_demo.service.EmployeeService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/api")
 public class EmployeeResource {
-
     private final EmployeeService employeeService;
-
     public EmployeeResource(EmployeeService employeeService) {
         this.employeeService = employeeService;
     }
-
     @PostMapping("/employees")
     public ResponseEntity create(@RequestBody Employee employee){
         Employee employee1 = employeeService.save(employee);
         return ResponseEntity.ok(employee1 );
+    }
+    //(@RequestBody Employee employee) - bu postmandan kelgan datani Employee classiga yuborib uni employee deb oladi
+    //Employee employee1 = employeeService.save(employee) - employee da kelgan data EmployeeService ning save metodi orqali DataBase ga yozilib
+    // Response bo'lib qaytadi
+
+    @GetMapping("/employees")
+    public ResponseEntity getAll(){
+        List<Employee> employeeList = employeeService.findAll();
+        return ResponseEntity.ok(employeeList);
     }
 }
