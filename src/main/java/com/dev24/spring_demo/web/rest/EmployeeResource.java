@@ -36,4 +36,9 @@ public class EmployeeResource {
         List<Employee> employeeList = employeeService.findByName(name);
         return ResponseEntity.ok(employeeList);
     }
+    @GetMapping("/employees/search")
+    public ResponseEntity getAllSearch(@RequestParam String name) {
+        List<Employee> employeeList = employeeService.findAllByParam(name);
+        return ResponseEntity.ok(employeeList);
+    }
 }

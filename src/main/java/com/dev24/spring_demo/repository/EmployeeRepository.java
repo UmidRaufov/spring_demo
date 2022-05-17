@@ -19,4 +19,17 @@ public interface EmployeeRepository extends JpaRepository<Employee, Long> {
 
     @Query(value = "SELECT * FROM employee  e WHERE e.name = :name", nativeQuery = true)
     List<Employee> findByNameQueryNative(@Param("name") String name);
+
+
+    //Math Query
+    List<Employee> findByNameLike(String name);
+    List<Employee> findAllByNameStartingWith(String name);
+    List<Employee> findAllByNameEndingWith(String name);
+
+    @Query("SELECT e FROM Employee e WHERE UPPER(e.name) LIKE UPPER(CONCAT('%', :name, '%'))")
+    List<Employee> findAllByLike(@Param("name") String name);
+
+    @Query(value = "SELECT * FROM employee e WHERE e.name LIKE %:name% ", nativeQuery = true)
+    List<Employee> findAllNativeLike(@Param("name") String name);
+
 }

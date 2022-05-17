@@ -27,7 +27,13 @@ public class EmployeeService {
     }
 
     public List<Employee> findByName(String name) {
-        return employeeRepository.findByName(name);
+        return employeeRepository.findByNameQueryNative(name);
     }
+
+    public List<Employee> findAllByParam(String name){
+        return employeeRepository.findAllByLike(name);
+    }
+
+
 
 }
