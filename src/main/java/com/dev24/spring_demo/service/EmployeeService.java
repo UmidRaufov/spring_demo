@@ -14,11 +14,20 @@ public class EmployeeService {
         this.employeeRepository = employeeRepository;
     }
 
-    public Employee save(Employee employee){
+    public Employee save(Employee employee) {
         return employeeRepository.save(employee);
     }
 
-    public List<Employee> findAll(){
+    public List<Employee> findAll() {
         return employeeRepository.findAll();
     }
+
+    public Employee findById(Long id) {
+        return employeeRepository.findById(id).get();
+    }
+
+    public List<Employee> findByName(String name) {
+        return employeeRepository.findByName(name);
+    }
+
 }
