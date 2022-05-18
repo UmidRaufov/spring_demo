@@ -41,4 +41,14 @@ public class EmployeeResource {
         List<Employee> employeeList = employeeService.findAllByParam(name);
         return ResponseEntity.ok(employeeList);
     }
+    @PutMapping("/employees")
+    public ResponseEntity update(@RequestBody Employee employee){
+        Employee employee1 = employeeService.save(employee);
+        return ResponseEntity.ok(employee1);
+    }
+    @DeleteMapping("/employees/{id}")
+    public ResponseEntity delete(@PathVariable Long id){
+        employeeService.delete(id);
+        return ResponseEntity.ok("Successful, Column deleted");
+    }
 }

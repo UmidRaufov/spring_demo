@@ -34,6 +34,9 @@ public class EmployeeService {
         return employeeRepository.findAllByLike(name);
     }
 
-
+    public void delete(Long id){
+        Employee employee = employeeRepository.getOne(id);
+        employeeRepository.delete(employee);
+    }
 
 }
